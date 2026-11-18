@@ -1,0 +1,11 @@
+{
+  "engine": "postgresql",
+  "mode": "fields",
+  "host": "127.0.0.1",
+  "port": "5433",
+  "user": "postgres",
+  "password": "postgres",
+  "dbname": "store_explorer",
+  "uri": "postgresql://postgres:postgres@127.0.0.1:5433/store_explorer",
+  "sslMode": "disable"
+}

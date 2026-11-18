@@ -1,0 +1,248 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #07080a;
+  --surface: #0d0d0d;
+  --surface-elevated: #101111;
+  --surface-card: #121212;
+  --button-fg: #18191a;
+  --hairline: #242728;
+  --hairline-soft: rgba(255, 255, 255, 0.08);
+  --hairline-strong: rgba(255, 255, 255, 0.16);
+  --primary: #ffffff;
+  --primary-pressed: #e8e8e8;
+  --on-primary: #000000;
+  --ink: #f4f4f6;
+  --body: #cdcdcd;
+  --charcoal: #d3d3d4;
+  --mute: #9c9c9d;
+  --ash: #6a6b6c;
+  --stone: #434345;
+  --on-dark: #ffffff;
+  --on-dark-mute: rgba(255, 255, 255, 0.72);
+  --accent-blue: #57c1ff;
+  --accent-blue-soft: rgba(87, 193, 255, 0.15);
+  --accent-red: #ff6161;
+  --accent-red-soft: rgba(255, 97, 97, 0.15);
+  --accent-green: #59d499;
+  --accent-green-soft: rgba(89, 212, 153, 0.15);
+  --accent-yellow: #ffc533;
+  --accent-yellow-soft: rgba(255, 197, 51, 0.15);
+  --hero-stripe-start: #ff5757;
+  --hero-stripe-end: #a1131a;
+  --key-bg-start: #121212;
+  --key-bg-end: #0d0d0d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--body);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-feature-settings: "calt" 1, "kern" 1, "liga" 1, "ss03" 1;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.display-xl {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0;
+  color: var(--ink);
+  font-feature-settings: "liga" 0, "ss02" 1, "ss03" 1, "ss08" 1;
+}
+
+.hero-stripe-band {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--canvas);
+}
+
+.hero-stripe-band::before {
+  content: "";
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-14deg);
+  width: 1100px;
+  height: 280px;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 60px,
+    rgba(255, 87, 87, 0.22) 60px,
+    rgba(161, 19, 26, 0.18) 180px,
+    transparent 180px,
+    transparent 240px
+  );
+  filter: blur(28px);
+  z-index: 0;
+}
+
+.keycap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, var(--key-bg-start) 0%, var(--key-bg-end) 100%);
+  border: 1px solid var(--hairline);
+  color: var(--body);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.1px;
+  padding: 1px 6px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+  padding: 8px 16px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.btn-primary:active {
+  background-color: var(--primary-pressed);
+}
+.btn-primary:disabled {
+  background-color: var(--surface-elevated);
+  color: var(--ash);
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--on-dark);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+  padding: 8px 16px;
+  height: 36px;
+  border-radius: 8px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.btn-tertiary {
+  background-color: var(--surface-elevated);
+  color: var(--on-dark);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+  padding: 8px 16px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--hairline);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.install-button {
+  background-color: transparent;
+  border: 1px solid var(--hairline-strong);
+  color: var(--on-dark);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+  padding: 6px 14px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.pill-tab {
+  background-color: transparent;
+  color: var(--body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.pill-tab-active {
+  background-color: var(--surface-elevated);
+  color: var(--on-dark);
+  border-color: var(--hairline);
+}
+
+.text-input {
+  background-color: var(--surface-elevated);
+  color: var(--on-dark);
+  border: 1px solid var(--hairline);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  padding: 8px 12px;
+  height: 36px;
+  border-radius: 8px;
+  outline: none;
+}
+.text-input:focus {
+  border-color: var(--hairline-strong);
+}
+
+.store-search-bar {
+  background-color: var(--surface-elevated);
+  color: var(--on-dark);
+  border: 1px solid var(--hairline);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  padding: 10px 16px;
+  height: 44px;
+  border-radius: 8px;
+  outline: none;
+}
+.store-search-bar:focus {
+  border-color: var(--hairline-strong);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--hairline);
+  border-radius: 4px;
+}

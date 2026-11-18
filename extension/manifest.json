@@ -1,0 +1,81 @@
+{
+  "manifest_version": 3,
+  "name": "Shopee & Lazada Best-Seller Sync (Rust GraphQL Bridge)",
+  "version": "1.2.0",
+  "description": "Bridges your Vue + Rust GraphQL Dashboard (port 8000) with your Shopee and Lazada browser sessions to search best-selling products and reviews.",
+  "permissions": [
+    "tabs",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.shopee.co.th/*",
+    "*://*.shopee.vn/*",
+    "*://*.shopee.co.id/*",
+    "*://*.shopee.sg/*",
+    "*://*.shopee.com.my/*",
+    "*://*.shopee.ph/*",
+    "*://*.lazada.co.th/*",
+    "*://*.lazada.vn/*",
+    "*://*.lazada.co.id/*",
+    "*://*.lazada.sg/*",
+    "*://*.lazada.com.my/*",
+    "*://*.lazada.com.ph/*",
+    "http://127.0.0.1:8000/*",
+    "http://localhost:8000/*",
+    "http://127.0.0.1:5173/*",
+    "http://localhost:5173/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://127.0.0.1:8000/*",
+        "http://localhost:8000/*",
+        "http://127.0.0.1:5173/*",
+        "http://localhost:5173/*"
+      ],
+      "js": ["bridge.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*.shopee.co.th/*",
+        "*://*.shopee.vn/*",
+        "*://*.shopee.co.id/*",
+        "*://*.shopee.sg/*",
+        "*://*.shopee.com.my/*",
+        "*://*.shopee.ph/*"
+      ],
+      "js": ["content_shopee_main.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "*://*.shopee.co.th/*",
+        "*://*.shopee.vn/*",
+        "*://*.shopee.co.id/*",
+        "*://*.shopee.sg/*",
+        "*://*.shopee.com.my/*",
+        "*://*.shopee.ph/*"
+      ],
+      "js": ["content_shopee.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.lazada.co.th/*",
+        "*://*.lazada.vn/*",
+        "*://*.lazada.co.id/*",
+        "*://*.lazada.sg/*",
+        "*://*.lazada.com.my/*",
+        "*://*.lazada.com.ph/*"
+      ],
+      "js": ["content_lazada.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
